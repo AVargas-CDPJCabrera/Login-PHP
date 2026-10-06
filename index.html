@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Gestión de Usuarios</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 960px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: #eff6ff;
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.2rem 0.5rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-public { background: #dcfce7; color: #15803d; }
+        .badge-auth   { background: #dbeafe; color: #1e40af; }
+        .badge-admin  { background: #fef3c7; color: #b45309; }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Sistema de Usuarios y Sesiones</h1>
+        <p>Selecciona el apartado al que deseas acceder:</p>
+    </div>
+
+    <div class="grid">
+        <!-- Tarjeta 1: Registro -->
+        <div class="card">
+            <div>
+                <span class="badge badge-public">Público</span>
+                <div class="card-icon">📝</div>
+                <h2 class="card-title">Registro de Usuario</h2>
+                <p class="card-desc">Crea una nueva cuenta con datos personales, dirección, fotografía y credenciales seguras.</p>
+            </div>
+            <a href="registro.php" class="btn btn-primary">Ir al Registro</a>
+        </div>
+
+        <!-- Tarjeta 2: Login -->
+        <div class="card">
+            <div>
+                <span class="badge badge-public">Público</span>
+                <div class="card-icon">🔐</div>
+                <h2 class="card-title">Iniciar Sesión</h2>
+                <p class="card-desc">Autentícate con email y clave. Cuenta con control de 3 intentos fallidos y bloqueo automático.</p>
+            </div>
+            <a href="login.php" class="btn btn-primary">Iniciar Sesión</a>
+        </div>
+
+        <!-- Tarjeta 3: Área de Usuario -->
+        <div class="card">
+            <div>
+                <span class="badge badge-auth">Requiere Sesión</span>
+                <div class="card-icon">👤</div>
+                <h2 class="card-title">Área de Usuario</h2>
+                <p class="card-desc">Página de bienvenida privada con datos de la sesión activa y comprobación de permisos.</p>
+            </div>
+            <a href="bienvenida.php" class="btn btn-outline">Acceder al Área</a>
+        </div>
+
+        <!-- Tarjeta 4: Panel Admin -->
+        <div class="card">
+            <div>
+                <span class="badge badge-admin">Solo Administrador</span>
+                <div class="card-icon">🛡️</div>
+                <h2 class="card-title">Panel de Administrador</h2>
+                <p class="card-desc">Acceso restringido únicamente para usuarios cuyo perfil sea <code>admin</code>.</p>
+            </div>
+            <a href="admin.php" class="btn btn-outline">Panel de Control</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Desarrollo Web &bull; Base de Datos: <code>registrouser</code> &bull; Tabla: <code>usuarios</code></p>
+    </footer>
+
+</body>
+</html>
